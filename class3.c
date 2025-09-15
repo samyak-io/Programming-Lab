@@ -1,78 +1,42 @@
+// date: 15th September
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h> //can use for isalpha(c)
-
-//create a lookup table
-//replace the characters with a permuted version of the original array
-//how to create a permutation of the array first
-
-
-//study Fischer - Yates
-
-/*
-for (i = n-1; i > 0; i = i - 1){
-    j = rand() % (i+1);
-    swap(A,i,j);
-}*/
-
-void swap(int* A, int* B){
-
-}
-
-void print_arr(int* array, int size){
-    for (int i=0; i<size; i++){
-        printf("%d ", *(array + i));
-    }
-
-}
-
-void shuffleArray(int *A, int n){
-    for (i = n-1; i > 0; i = i - 1){
-        j = rand() % (i+1);
-        swap(A,i,j);
-    }
-}
-
-/*
-int i;
-for (i = rot; i < n; i++){
-    A[i-rot] = A[i];
-}
-for (i = rot; i < n; i = i + 1){A[i-rot] = A[i];}
-
-for (i = 0; i < rot; i = i + 1){A[ n-rot +i ] = buf [i];}
-*/
-
-void rotateArray(int *A, int n, int rot){
-    int* buf = (int*) malloc(rot * sizeof(int));
-
-    int i;
-
-    for (i = rot; i < n; i++){
-        A[i-rot] = A[i];
-    }
-    for (i = rot; i < n; i++){
-        A[i-rot] = A[i];
-    }
-
-    memcpy((A + n - rot), buf, rot * sizeof(int)); //when memories are overlapping do not use memcpy
-}
 
 int main(){
-    srand(12345);
+    char S[256];
+    int i;
 
-    int S[26] = {0}; 
-
-    for(int i=0; i<26; i++){
+    for (i = 0; i < 256; i++){
         S[i] = i;
     }
-    print_arr(S, 26);
 
-    rotateArray(S, 26, 3);
-
-    while (c = fgetc(infile) != EOF){
-        if (c >= 'a' && c <= 'z'){
-            
-        }
+    for (i = 0; i < 256; i++){
+        printf("%d -> %d\n", i, S[i]);
     }
+
+    //read up on 1's complement and 2's complement.
+
+    //in the system, char is an 8 bit signed type, it can only represent -128..127. After that they wrap.
+
+    //Huffman and Shannon-Fano
+
+    /*
+    if you want a variable length encoding, you wanna make sure you don't get confused.
+
+    Huffman's approach
+    1. Take the two smallest things and combine them and we keep doing that. we temporarily pretend that they're the same.
+        in other words take the minimum two things at each step, remove them and put back the sum of them.
+    2. label each (of the two) edge back from the root to either 1 or 0. 
+    3. for each letter you now have a unique encoding.
+    4. the largest frequency will have the shortest length encoding. 
+    */
+
+    //figure out why 
+    /*
+    while((c = fgetc(file)) != EOF){
+        F[c] ++             would give an error and why we need to c & 'something'
+    }
+
+    //heap briefly introduced in class
+    
+    */
 }
